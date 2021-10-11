@@ -63,7 +63,7 @@ function renderCurrentWeather(weatherData) {
     var humidity = document.createElement("p");
     var uvi = document.createElement("p")
 
-    icon.setAttribute("src", 'htpp://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png');
+    icon.setAttribute("src", 'http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png');
 
     cityNameHeader.innerText = '${currentCity} ${convertDT(weatherData.currebt.dt)}';
     cityNameHeader.append(icon);
@@ -103,5 +103,75 @@ function renderForecastWeather(weatherData) {
 
     icon.setAttribute("src", 'http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png');
 
+    futureData.innerText = '${convertDT(weatherData.dt)}';
+    forcastCardDiv.append(futureData);
+    forcastCardDiv.append(icon);
 
-}
+    tempForecast.innerText = 'Temperature: ${weatherData.temp.day} F°';
+    forcastCardDiv.append(tempForecast);
+
+    windForecast.innerText = 'Wind: ${weatherData.wind_speed} MPH';
+    forcastCardDiv.append(windForecast);
+
+    humidityForecast.innerText = 'Humidity: ${weatherData.humidity} %';
+    forcastCardDiv.append(humidityForecast);
+
+    forcastCardDiv.classList = "bg-dark text-light m-2 p-2 rounded w-auto fs-5";
+    fiveDayForcast.append(fiveDayForcast)
+};
+
+
+function convertDT(timestamp) {
+
+    var months_arr = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ];
+
+    var date = new Date(timestamp * 1000);
+
+    var year = date.getFullYear();
+
+    var month = months_arr[date.getMonth()];
+
+    var day = date.getDate();
+
+    var convdataTime = month + "-" + day + "-" + year;
+
+    return convdataTime;
+};
+
+
+recentCities.addEventListener("click", function (event) {
+    if (event.target.classList.contains("cityButton")) {
+
+        var currentURL = 'https://api.openweathermap.org/data/2.5/weather?q=${event.target.textContent}&appid=${APIKey}&units=imperial';
+        fetch(currentURL)
+            .then((response) => response.json())
+            .then(function (data) {
+                console.log(data);
+                currentCity = data.name
+                var forecastURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&appid=${APIKey}&units=imperial`;
+                fetch(forecastURL)
+                    .then((response) => response.json())
+                    .then(function (data) {
+                        console.log(data);
+                        renderCurrentWeather(data);
+                        fiveDayForcast.innerHTML = "";
+                        for (let i = 0; i < 5; i++) {
+                            renderForecastWeather(data.daily[i]);
+                        }
+                    })
+            })
+    }
+})
