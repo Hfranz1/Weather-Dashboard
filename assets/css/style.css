@@ -1,1 +1,67 @@
+body {
+    height: 100vh;
+}
 
+h1 {
+    color: white;
+    font-size: 45px;
+    text-align: center;
+    padding-top: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    color: black;
+    font-weight: bold;
+}
+
+#wearher-header {
+    background: linear-gradient(#3aa89f,#42c0b577);
+    margin-top: 20px;
+    height: 75px;
+    font-family: sans-serif;
+    width: 100%;
+}
+
+.city-button {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #b7b7b7;
+    border: none;
+}
+
+#city-card {
+    border: black 1px solid;
+}
+
+#city-card p {
+    margin-left: 10px;
+}
+
+#city-display-name {
+    padding-left: 5px;
+    text-transform: lowercase;
+}
+
+#city-display-name::first-letter {
+    text-transform: capitalize;
+}
+
+.forecast-mimi-card {
+    background-color: #33475a;
+    color: white;
+    margin-right: 5px;
+}
+
+.card {
+    border: none;
+}
+.row {
+    width: 100%;
+}
+button {
+    text-transform: lowercase;
+}
+button::first-letter {
+    text-transform: capitalize;
+}
