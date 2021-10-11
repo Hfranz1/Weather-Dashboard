@@ -1,1 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <div id="weather-header">
+        <h1>Weather Dashboard</h1>
+    </div>
+
+</body>
+<div class="row">
+    <div class="col-lg-3" style="width: 28rem;">
+        <div class="card" style="width: 18rem;">
+            <div class="card-header" class="col-sm-2">
+                <h2>Search for a City</h2>
+            </div>
+            <div class="input-group">
+                <input type="search" onfocus="this.value=''" id="city-name" class="form-control rounded"
+                    placeholder="Enter a City Name" aria-label="Search" aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary" id="city-search">search</button>
+            </div>
+            <ul class="list-group list-group-flush" id="search-parent"></ul>
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="card" id="display-today">
+
+        </div>
+
+        <div id="forcastCard">
+            <h3 id="5-day-display"></h3>
+            <div class="container">
+                <div class="row">
+                    <div id="five-day-forcast">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./assets/js/script.js"></script>
+
+</html>
