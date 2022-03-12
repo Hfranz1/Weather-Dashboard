@@ -1,0 +1,13 @@
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.container {
+    background-color: darkgray;
+    margin: 0;
+    margin-right: 0;
+}
